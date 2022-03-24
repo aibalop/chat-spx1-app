@@ -1,0 +1,7 @@
+{
+  "name": "chat-spx1-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
