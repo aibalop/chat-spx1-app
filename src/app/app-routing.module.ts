@@ -5,6 +5,15 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+  {
+    path: 'auth',
+    children: [
+      {
+        path: 'sign-up',
+        loadChildren: () => import('./auth/sign-up/sign-up.module').then(m => m.SignUpPageModule)
+      }
+    ]
   }
 ];
 @NgModule({
@@ -13,4 +22,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
