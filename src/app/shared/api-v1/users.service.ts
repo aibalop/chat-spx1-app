@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IUser } from '../interfaces/user.interface';
+import { User } from '../models/user.model';
 import { HttpClientService } from '../services/http-client.service';
 
 @Injectable({
@@ -7,12 +9,12 @@ import { HttpClientService } from '../services/http-client.service';
 })
 export class UsersService {
 
-  resource = 'v1/users'
+  private _resource = 'v1/users'
 
   constructor(private httpClientService: HttpClientService) { }
 
-  create(data: ICustomer): Observable<ICustomer> {
-    return this.httpClientService.post(`${this.resource}`, data);
+  create(data: IUser): Observable<IUser> {
+    return this.httpClientService.post(`${this._resource}`, data);
   }
 
 }

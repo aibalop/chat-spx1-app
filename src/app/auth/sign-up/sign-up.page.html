@@ -72,9 +72,11 @@
 
       <ion-row class="ion-justify-content-center">
 
-        <ion-col size="12" size-md="4" class="ion-text-right">
+        <ion-col size="12" size-md="4" [ngClass]="{ 'ion-text-right': !isSend, 'ion-text-center': isSend }">
 
-          <ion-button color="primary" shape="round" type="submit">
+          <ion-spinner name="circles" class="ion-margin-top" *ngIf="isSend"></ion-spinner>
+
+          <ion-button color="primary" shape="round" type="submit" class="ion-margin-top" *ngIf="!isSend">
             Registrarme
           </ion-button>
 
