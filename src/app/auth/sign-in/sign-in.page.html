@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Registrarme</ion-title>
+    <ion-title>Iniciar Sesión</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,36 +9,6 @@
   <form [formGroup]="form" (submit)="onSubmit()">
 
     <ion-grid fixed>
-
-      <ion-row class="ion-justify-content-center">
-
-        <ion-col size="12" size-md="4">
-
-          <ion-item>
-            <ion-label position="stacked">Nombre</ion-label>
-            <ion-input placeholder="Capture su nombre" autofocus enterkeyhint="next" inputmode="text" type="text"
-              formControlName="name">
-            </ion-input>
-          </ion-item>
-
-        </ion-col>
-
-      </ion-row>
-
-      <ion-row class="ion-justify-content-center">
-
-        <ion-col size="12" size-md="4">
-
-          <ion-item>
-            <ion-label position="stacked">Apellido</ion-label>
-            <ion-input placeholder="Capture su apellido" enterkeyhint="next" inputmode="text" type="text"
-              formControlName="lastName">
-            </ion-input>
-          </ion-item>
-
-        </ion-col>
-
-      </ion-row>
 
       <ion-row class="ion-justify-content-center">
 
@@ -84,8 +54,8 @@
 
         <ion-col size="6" size-md="2" class="ion-align-self-end">
 
-          <ion-button color="primary" fill="clear" routerLink="/auth/sign-in" routerDirection="root">
-            Iniciar Sesión
+          <ion-button color="primary" fill="clear" routerLink="/auth/sign-up" routerDirection="root">
+            Registrarme
           </ion-button>
 
         </ion-col>
@@ -93,7 +63,7 @@
         <ion-col size="6" size-md="2" class="ion-align-self-end">
 
           <ion-button color="primary" shape="round" type="submit" class="ion-float-right">
-            Registrarme
+            Ingresar
           </ion-button>
 
         </ion-col>
