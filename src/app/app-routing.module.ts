@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { NotAuthGuard } from './shared/guards/not-auth.guard';
 
 const routes: Routes = [
   {
@@ -8,6 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'auth',
+    canActivate: [NotAuthGuard],
     children: [
       {
         path: 'sign-up',

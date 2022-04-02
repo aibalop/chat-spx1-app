@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -7,7 +7,16 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Drivers, Storage } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage-angular';
+
+import localeEs from '@angular/common/locales/es-MX';
+import { registerLocaleData } from '@angular/common';
+import { UnauthorizedInterceptorService } from './shared/interceptors/unauthorized-interceptor.service';
+import { HeaderInterceptorService } from './shared/interceptors/header-interceptor.service';
+
+registerLocaleData(localeEs);
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,9 +25,18 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+      driverOrder: [Drivers.IndexedDB, Drivers.LocalStorage]
+    })
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'es-MX' },
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: UnauthorizedInterceptorService, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

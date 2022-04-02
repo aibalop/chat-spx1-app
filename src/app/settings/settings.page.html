@@ -1,16 +1,38 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Settings
+      Configuración
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Settings</ion-title>
+      <ion-title size="large">Configuración</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-list>
+
+    <ion-item *ngIf="sessionService.userSessionAsObservable | async as userSession">
+      <ion-avatar slot="start">
+        <img src="assets/imgs/avatars/smile-emoji.png" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ userSession.name }} {{ userSession.lastName }}</h2>
+        <h3>{{ userSession.username }}</h3>
+        <p>Se registro el {{ userSession.createdAt | date: 'short' }}</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-list-header> Opciones </ion-list-header>
+
+    <ion-item button detail (click)="onSignOut()">
+      <ion-icon name="log-in-outline" slot="start"></ion-icon>
+      <ion-label>Cerrar Sesión</ion-label>
+    </ion-item>
+
+  </ion-list>
 
 </ion-content>
