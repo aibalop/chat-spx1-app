@@ -49,7 +49,7 @@ export class SignUpPage implements OnInit {
     try {
       this.isSend = true;
       const newUser = await this.usersService.create(this.form.value).toPromise();
-      this.toastService.success('Bienvenido: ' + new User(newUser).getFullName(), 'Acción Exitosa');
+      this.toastService.success('Bienvenido: ' + new User(newUser).getFullname(), 'Acción Exitosa');
       this, this._signIn();
     } catch (error) {
       this.isSend = false;

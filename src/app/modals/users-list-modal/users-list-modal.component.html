@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="end">
+        <ion-button (click)="modalController.dismiss()">
+          <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Lista de Contactos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+</ion-header>
+<ion-content>
+
+  <ion-list class="ion-no-padding">
+
+    <ion-item button detail *ngFor="let user of usersList" (click)="onSelectUser(user)">
+
+      <ion-avatar slot="start">
+        <img src="assets/imgs/avatars/smile-emoji.png" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ user.getFullname() }}</h2>
+        <h3>{{ user.getUsername() }}</h3>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

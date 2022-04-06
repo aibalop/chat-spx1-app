@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IUser } from '../interfaces/user.interface';
-import { User } from '../models/user.model';
 import { HttpClientService } from '../services/http-client.service';
 
 @Injectable({
@@ -12,6 +11,10 @@ export class UsersService {
   private _resource = 'v1/users'
 
   constructor(private httpClientService: HttpClientService) { }
+
+  getAll(query: any = {}): Observable<Array<IUser>> {
+    return this.httpClientService.get(`${this._resource}`, query);
+  }
 
   create(data: IUser): Observable<IUser> {
     return this.httpClientService.post(`${this._resource}`, data);

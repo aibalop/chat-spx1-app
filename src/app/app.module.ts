@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Drivers, Storage } from '@ionic/storage';
+import { Drivers } from '@ionic/storage';
 import { IonicStorageModule } from '@ionic/storage-angular';
 
 import localeEs from '@angular/common/locales/es-MX';
@@ -22,8 +22,8 @@ registerLocaleData(localeEs);
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    BrowserModule, 
-    IonicModule.forRoot(), 
+    BrowserModule,
+    IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     IonicStorageModule.forRoot({
@@ -39,4 +39,4 @@ registerLocaleData(localeEs);
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

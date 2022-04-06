@@ -5,13 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { ChatsPage } from './chats.page';
 
 import { ChatsPageRoutingModule } from './chats-routing.module';
+import { ModalsModule } from '../modals/modals.module';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    ChatsPageRoutingModule
+    ChatsPageRoutingModule,
+    ModalsModule
   ],
   declarations: [ChatsPage]
 })
