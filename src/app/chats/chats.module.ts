@@ -6,6 +6,7 @@ import { ChatsPage } from './chats.page';
 
 import { ChatsPageRoutingModule } from './chats-routing.module';
 import { ModalsModule } from '../modals/modals.module';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { ModalsModule } from '../modals/modals.module';
     CommonModule,
     FormsModule,
     ChatsPageRoutingModule,
-    ModalsModule
+    ModalsModule,
+    ComponentsModule
   ],
   declarations: [ChatsPage]
 })
