@@ -1,16 +1,16 @@
-<ion-content [ngClass]="{ 'web-user-conversation': user, 'web-empty-conversation': !user }" color="dark">
+<ion-content [ngClass]="{ 'web-user-conversation': _user, 'web-empty-conversation': !_user }" color="dark">
 
-  <ion-item color="primary" lines="none" *ngIf="user">
+  <ion-item color="primary" lines="none" *ngIf="_user">
     <ion-avatar slot="start">
-      <img src="assets/imgs/avatars/smile-emoji.png" />
+      <img [src]="avatar" />
     </ion-avatar>
     <ion-label>
-      <h2>{{ user.getFullname() }}</h2>
-      <h3>{{ user.getUsername() }}</h3>
+      <h2>{{ _user.getFullname() }}</h2>
+      <h3>{{ _user.getUsername() }}</h3>
     </ion-label>
   </ion-item>
 
-  <ion-grid *ngIf="!user">
+  <ion-grid *ngIf="!_user">
     <ion-row class="ion-align-items-center" style="height: 75vh;">
       <ion-col class="ion-text-center">
         <ion-text color="primary">
@@ -21,7 +21,7 @@
   </ion-grid>
 
 </ion-content>
-<ion-footer *ngIf="user">
+<ion-footer *ngIf="_user">
   <ion-item>
     <ion-label position="stacked">Mensaje</ion-label>
     <ion-textarea placeholder="Escribeme un mensaje!!!">

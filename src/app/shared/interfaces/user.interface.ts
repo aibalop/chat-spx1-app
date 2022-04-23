@@ -4,8 +4,8 @@ export interface IUser {
     lastName: string;
     username: string;
     password?: string;
-    createdAt: string;
-    updatedAt: string;
+    createdAt?: string;
+    updatedAt?: string;
 
     getFullname?: () => string;
     getUsername?: () => string;

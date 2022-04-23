@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IConversation } from '../interfaces/conversation.interface';
 import { IUser } from '../interfaces/user.interface';
 import { HttpClientService } from '../services/http-client.service';
 
@@ -14,6 +15,10 @@ export class UsersService {
 
   getAll(query: any = {}): Observable<Array<IUser>> {
     return this.httpClientService.get(`${this._resource}`, query);
+  }
+
+  getAllConversations(userId: string, query: any = {}): Observable<Array<IConversation>> {
+    return this.httpClientService.get(`${this._resource}/${userId}/conversations`, query);
   }
 
   create(data: IUser): Observable<IUser> {

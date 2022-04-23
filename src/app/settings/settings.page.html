@@ -17,7 +17,7 @@
 
     <ion-item *ngIf="sessionService.userSessionAsObservable | async as userSession">
       <ion-avatar slot="start">
-        <img src="assets/imgs/avatars/smile-emoji.png" />
+        <img [src]="getAvatar(userSession.username)" />
       </ion-avatar>
       <ion-label>
         <h2>{{ userSession.name }} {{ userSession.lastName }}</h2>

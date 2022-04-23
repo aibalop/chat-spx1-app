@@ -1,0 +1,17 @@
+<ion-item button detail *ngIf="userOne && userTwo">
+  <ion-avatar slot="start">
+    <img [src]="getAvatar(userOne.getUsername())" *ngIf="userOne._id !== sessionService.userSession._id" />
+    <img [src]="getAvatar(userTwo.getUsername())" *ngIf="userTwo._id !== sessionService.userSession._id" />
+  </ion-avatar>
+  <ion-label>
+    <h2 *ngIf="userOne._id !== sessionService.userSession._id">
+      {{ userOne.getFullname() }}
+    </h2>
+    <h2 *ngIf="userTwo._id !== sessionService.userSession._id">
+      {{ userTwo.getFullname() }}
+    </h2>
+    <h4>
+      {{ lastMessage?.message }}
+    </h4>
+  </ion-label>
+</ion-item>

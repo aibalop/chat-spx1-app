@@ -23,10 +23,14 @@
           Nueva Conversación
         </ion-button>
 
+        <ion-list *ngFor="let conversation of conversations">
+          <app-conversation-list-item [conversation]="conversation"></app-conversation-list-item>
+        </ion-list>
+
       </ion-col>
 
       <ion-col size="8" class="ion-no-padding" style="border-left: 1px solid #757575;">
-        <app-conversation [user]="selectedUser"></app-conversation>
+        <app-conversation-chat [user]="selectedUser"></app-conversation-chat>
       </ion-col>
 
     </ion-row>

@@ -17,7 +17,7 @@
     <ion-item button detail *ngFor="let user of usersList" (click)="onSelectUser(user)">
 
       <ion-avatar slot="start">
-        <img src="assets/imgs/avatars/smile-emoji.png" />
+        <img [src]="getAvatar(user.getUsername())" />
       </ion-avatar>
       <ion-label>
         <h2>{{ user.getFullname() }}</h2>
