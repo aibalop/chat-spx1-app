@@ -49,4 +49,8 @@ export class ChatsPage implements OnInit {
     }
   }
 
+  onSelectUserFromConversation(selectedUser: User): void {
+    this.selectedUser = selectedUser;
+  }
+
 }

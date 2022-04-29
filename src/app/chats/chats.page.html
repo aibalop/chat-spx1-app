@@ -24,7 +24,8 @@
         </ion-button>
 
         <ion-list *ngFor="let conversation of conversations">
-          <app-conversation-list-item [conversation]="conversation"></app-conversation-list-item>
+          <app-conversation-list-item [conversation]="conversation" (selectedUser)="onSelectUserFromConversation($event)">
+          </app-conversation-list-item>
         </ion-list>
 
       </ion-col>

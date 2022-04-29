@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { generateFromString } from 'generate-avatar'
 import { IConversation } from 'src/app/shared/interfaces/conversation.interface';
@@ -17,6 +17,8 @@ export class ConversationListItemComponent implements OnInit {
   userOne: User;
   userTwo: User;
   lastMessage: IMessage;
+
+  @Output() selectedUser = new EventEmitter<User>();
 
   @Input() set conversation(value: IConversation) {
     if (value) {
@@ -38,6 +40,14 @@ export class ConversationListItemComponent implements OnInit {
 
   getAvatar(username: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/svg+xml;utf8,${generateFromString(username)}`);
+  }
+
+  onSelectConversation(): void {
+    if (this.userOne._id !== this.sessionService.userSession._id) {
+      this.selectedUser.emit(this.userOne);
+    } else {
+      this.selectedUser.emit(this.userTwo);
+    }
   }
 
 }

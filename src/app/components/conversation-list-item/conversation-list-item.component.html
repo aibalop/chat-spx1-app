@@ -1,4 +1,4 @@
-<ion-item button detail *ngIf="userOne && userTwo">
+<ion-item button detail *ngIf="userOne && userTwo" (click)="onSelectConversation()">
   <ion-avatar slot="start">
     <img [src]="getAvatar(userOne.getUsername())" *ngIf="userOne._id !== sessionService.userSession._id" />
     <img [src]="getAvatar(userTwo.getUsername())" *ngIf="userTwo._id !== sessionService.userSession._id" />
