@@ -1,4 +1,5 @@
-<ion-content [ngClass]="{ 'web-user-conversation': _user, 'web-empty-conversation': !_user }" color="dark">
+<ion-content class="bg-chat-content" [ngClass]="{ 'web-user-conversation': _user, 'web-empty-conversation': !_user }"
+  color="dark">
 
   <ion-item color="primary" lines="none" *ngIf="_user">
     <ion-avatar slot="start">
@@ -10,7 +11,7 @@
     </ion-label>
   </ion-item>
 
-  <ion-grid *ngIf="!_user">
+  <!-- <ion-grid *ngIf="!_user">
     <ion-row class="ion-align-items-center" style="height: 75vh;">
       <ion-col class="ion-text-center">
         <ion-text color="primary">
@@ -18,7 +19,50 @@
         </ion-text>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
+
+
+  <div class="container">
+
+    <div class="message-blue">
+      <p class="message-content">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo fugit possimus aut ullam blanditiis voluptates
+        tenetur temporibus corporis commodi! Dolorem a id aut sed voluptates facilis magni dolores dignissimos vero?
+      </p>
+      <div class="message-timestamp-left">13:37</div>
+    </div>
+
+    <div class="message-blue">
+      <p class="message-content">This is an awesome message!</p>
+      <div class="message-timestamp-left">13:37</div>
+    </div>
+
+    <div class="message-orange-content">
+      <div class="message-orange">
+        <p class="message-content">I agree that your message is awesome!</p>
+        <div class="message-timestamp-right">13:37</div>
+      </div>
+    </div>
+
+    <!--TODO: Crear component para la burbuja de mensaje-->
+
+    <div class="message-orange-content">
+      <div class="message-orange">
+        <p class="message-content">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est aliquam sunt, praesentium dignissimos commodi
+          sequi at autem provident animi beatae quia quae distinctio voluptates, possimus quo dolorum quaerat. Esse,
+          tempore.
+        </p>
+        <div class="message-timestamp-right">13:37</div>
+      </div>
+    </div>
+
+    <div class="message-blue">
+      <p class="message-content">Thanks!</p>
+      <div class="message-timestamp-left">13:37</div>
+    </div>
+
+  </div>
 
 </ion-content>
 <ion-footer *ngIf="_user">
