@@ -1,0 +1,21 @@
+<ng-container *ngIf="message && userSessionId">
+  <div class="message-other" *ngIf="message.userId?._id !== userSessionId">
+    <p class="message-content">
+      {{ message.message }}
+    </p>
+    <div class="message-timestamp-left">
+      {{ message.createdAt |date:'shortTime' }}
+    </div>
+  </div>
+
+  <div class="message-me-content" *ngIf="message.userId?._id === userSessionId">
+    <div class="message-me">
+      <p class="message-content">
+        {{ message.message }}
+      </p>
+      <div class="message-timestamp-right">
+        {{ message.createdAt |date:'shortTime' }}
+      </div>
+    </div>
+  </div>
+</ng-container>

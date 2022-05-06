@@ -4,11 +4,13 @@ import { ConversationChatComponent } from './conversation-chat/conversation-chat
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { ConversationListItemComponent } from './conversation-list-item/conversation-list-item.component';
+import { ConversationChatBubbleComponent } from './conversation-chat-bubble/conversation-chat-bubble.component';
 
 @NgModule({
   declarations: [
     ConversationChatComponent,
-    ConversationListItemComponent
+    ConversationListItemComponent,
+    ConversationChatBubbleComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { ConversationListItemComponent } from './conversation-list-item/conversa
   ],
   exports: [
     ConversationChatComponent,
-    ConversationListItemComponent
+    ConversationListItemComponent,
+    ConversationChatBubbleComponent
   ]
 })
 export class ComponentsModule { }
