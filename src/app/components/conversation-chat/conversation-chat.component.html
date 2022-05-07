@@ -11,7 +11,7 @@
     </ion-label>
   </ion-item>
 
-  <!-- <ion-grid *ngIf="!_user">
+  <ion-grid *ngIf="!_user || messages.length === 0">
     <ion-row class="ion-align-items-center" style="height: 75vh;">
       <ion-col class="ion-text-center">
         <ion-text color="primary">
@@ -19,48 +19,11 @@
         </ion-text>
       </ion-col>
     </ion-row>
-  </ion-grid> -->
+  </ion-grid>
 
+  <div class="container" *ngIf="_user && messages.length > 0">
 
-  <div class="container">
-
-    <div class="message-blue">
-      <p class="message-content">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo fugit possimus aut ullam blanditiis voluptates
-        tenetur temporibus corporis commodi! Dolorem a id aut sed voluptates facilis magni dolores dignissimos vero?
-      </p>
-      <div class="message-timestamp-left">13:37</div>
-    </div>
-
-    <div class="message-blue">
-      <p class="message-content">This is an awesome message!</p>
-      <div class="message-timestamp-left">13:37</div>
-    </div>
-
-    <div class="message-orange-content">
-      <div class="message-orange">
-        <p class="message-content">I agree that your message is awesome!</p>
-        <div class="message-timestamp-right">13:37</div>
-      </div>
-    </div>
-
-    <!--TODO: Crear component para la burbuja de mensaje-->
-
-    <div class="message-orange-content">
-      <div class="message-orange">
-        <p class="message-content">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est aliquam sunt, praesentium dignissimos commodi
-          sequi at autem provident animi beatae quia quae distinctio voluptates, possimus quo dolorum quaerat. Esse,
-          tempore.
-        </p>
-        <div class="message-timestamp-right">13:37</div>
-      </div>
-    </div>
-
-    <div class="message-blue">
-      <p class="message-content">Thanks!</p>
-      <div class="message-timestamp-left">13:37</div>
-    </div>
+    <app-conversation-chat-bubble *ngFor="let message of messages;" [message]="message"></app-conversation-chat-bubble>
 
   </div>
 
