@@ -6,6 +6,9 @@ import { ConversationsService } from 'src/app/shared/api-v1/conversations.servic
 import { IMessage } from 'src/app/shared/interfaces/message.interface';
 import { AlertDialogService } from 'src/app/shared/services/alert-dialog.service';
 import { IConversation } from 'src/app/shared/interfaces/conversation.interface';
+import { UsersService } from 'src/app/shared/api-v1/users.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SessionService } from 'src/app/shared/services/session.service';
 
 @Component({
   selector: 'app-conversation-chat',
@@ -22,6 +25,10 @@ export class ConversationChatComponent implements OnInit {
 
   conversation: IConversation;
 
+  form = new FormGroup({
+    message: new FormControl(null, Validators.required)
+  });
+
   @Input() set user(value: User) {
     this.messages = [];
     this.conversation = null;
@@ -35,7 +42,9 @@ export class ConversationChatComponent implements OnInit {
   constructor(
     private sanitizer: DomSanitizer,
     private conversationService: ConversationsService,
-    private alertDialogService: AlertDialogService
+    private alertDialogService: AlertDialogService,
+    private userService: UsersService,
+    private sessionService: SessionService
   ) { }
 
   ngOnInit() { }
@@ -45,13 +54,50 @@ export class ConversationChatComponent implements OnInit {
       this.conversation = await this.conversationService.getConversationWithUser(this._user._id).toPromise();
       this._getMessages();
     } catch (error) {
-      this.alertDialogService.catchError(error);
+      if (error.status !== 404) {
+        this.alertDialogService.catchError(error);
+      }
     }
   }
 
   private async _getMessages(): Promise<void> {
     try {
       this.messages = await this.conversationService.getMessages(this.conversation._id).toPromise();
+    } catch (error) {
+      this.alertDialogService.catchError(error);
+    }
+  }
+
+  onSubmitMessage(): void {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    if (this.conversation) {
+      this._createMessage();
+    } else {
+      this._createConversation();
+    }
+  }
+
+  private async _createConversation(): Promise<void> {
+    try {
+      const { message } = this.form.value;
+      this.conversation = await this.userService.createConversation(this.sessionService.userSession._id, this._user._id, message).toPromise();
+      this.form.reset();
+      this._getMessages();
+    } catch (error) {
+      this.alertDialogService.catchError(error);
+    }
+  }
+
+  private async _createMessage(): Promise<void> {
+    try {
+      const { message } = this.form.value;
+      await this.conversationService.createMessage(this.conversation._id, message).toPromise();
+      this.form.reset();
+      this._getMessages();
     } catch (error) {
       this.alertDialogService.catchError(error);
     }

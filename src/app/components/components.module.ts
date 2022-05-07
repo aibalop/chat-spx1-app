@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConversationChatComponent } from './conversation-chat/conversation-chat.component';
 import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConversationListItemComponent } from './conversation-list-item/conversation-list-item.component';
 import { ConversationChatBubbleComponent } from './conversation-chat-bubble/conversation-chat-bubble.component';
 
@@ -15,7 +15,8 @@ import { ConversationChatBubbleComponent } from './conversation-chat-bubble/conv
   imports: [
     CommonModule,
     IonicModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     ConversationChatComponent,

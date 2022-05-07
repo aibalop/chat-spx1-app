@@ -25,4 +25,8 @@ export class UsersService {
     return this.httpClientService.post(`${this._resource}`, data);
   }
 
+  createConversation(senderUserId: string, recipientUserId: string, message: string): Observable<IConversation> {
+    return this.httpClientService.post(`${this._resource}/${senderUserId}/conversations`, { recipientUserId, message });
+  }
+
 }

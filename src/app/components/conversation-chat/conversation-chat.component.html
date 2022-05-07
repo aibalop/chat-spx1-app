@@ -29,9 +29,15 @@
 
 </ion-content>
 <ion-footer *ngIf="_user">
-  <ion-item>
-    <ion-label position="stacked">Mensaje</ion-label>
-    <ion-textarea placeholder="Escribeme un mensaje!!!">
-    </ion-textarea>
-  </ion-item>
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-label position="stacked">Mensaje</ion-label>
+      <ion-textarea placeholder="Escribeme un mensaje!!!" formControlName="message">
+      </ion-textarea>
+      <ion-button (click)="onSubmitMessage()" slot="end">
+        Enviar
+        <ion-icon slot="end" name="send"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </form>
 </ion-footer>
