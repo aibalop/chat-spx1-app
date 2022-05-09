@@ -12,8 +12,6 @@ export class NotAuthGuard implements CanActivate {
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
     if (this.sessionService.isLogged()) {
-      console.log('Entro aqui');
-      
       this.router.navigateByUrl('/app/chats');
       return false;
     }

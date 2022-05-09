@@ -6,6 +6,7 @@ import { UsersService } from 'src/app/shared/api-v1/users.service';
 import { User } from 'src/app/shared/models/user.model';
 import { AlertDialogService } from 'src/app/shared/services/alert-dialog.service';
 import { SessionService } from 'src/app/shared/services/session.service';
+import { SocketioService } from 'src/app/shared/services/socketio.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 
 @Component({
@@ -30,6 +31,7 @@ export class SignUpPage implements OnInit {
     private readonly alertDialogService: AlertDialogService,
     private readonly authService: AuthService,
     private readonly sessionService: SessionService,
+    private readonly socketioService: SocketioService,
     private router: Router
   ) { }
 
@@ -65,6 +67,7 @@ export class SignUpPage implements OnInit {
       this.sessionService.userSession = signInSuccess.user;
       this.form.reset();
       this.isSend = false;
+      this.socketioService.connect();
       this.router.navigateByUrl('/app/chats')
     } catch (error) {
       this.isSend = false;
