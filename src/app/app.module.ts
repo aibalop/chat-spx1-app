@@ -16,11 +16,6 @@ import { registerLocaleData } from '@angular/common';
 import { UnauthorizedInterceptorService } from './shared/interceptors/unauthorized-interceptor.service';
 import { HeaderInterceptorService } from './shared/interceptors/header-interceptor.service';
 
-import { environment } from 'src/environments/environment';
-
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-const config: SocketIoConfig = { url: environment.SOCKET_IO_URL, options: { } };
-
 registerLocaleData(localeEs);
 
 @NgModule({
@@ -34,8 +29,7 @@ registerLocaleData(localeEs);
     IonicStorageModule.forRoot({
       name: '__mydb',
       driverOrder: [Drivers.IndexedDB, Drivers.LocalStorage]
-    }),
-    SocketIoModule.forRoot(config)
+    })
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es-MX' },
