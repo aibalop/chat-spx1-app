@@ -36,6 +36,12 @@ export class ConversationChatComponent implements OnInit, OnDestroy {
   @Input() set user(value: User) {
     this.messages = [];
     this.conversation = null;
+    this._user = null;
+    this.avatar = null;
+    this.form.reset();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
     if (value) {
       this._user = value;
       this.avatar = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/svg+xml;utf8,${generateFromString(this._user.getUsername())}`);
@@ -55,6 +61,7 @@ export class ConversationChatComponent implements OnInit, OnDestroy {
   ngOnInit() { }
 
   ngOnDestroy(): void {
+    console.log('ngOnDestroy conversation-chat.component');
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
@@ -102,11 +109,10 @@ export class ConversationChatComponent implements OnInit, OnDestroy {
   private async _createConversation(): Promise<void> {
     try {
       const { message } = this.form.value;
-      // TODO: agregar emit al crear conversation para actualizar lista de conversaciones de la derecha
       this.conversation = await this.userService.createConversation(this.sessionService.userSession._id, this._user._id, message).toPromise();
       this.form.reset();
       this._listenConversation();
-      this._getMessages();
+      this._emitToUsers();
     } catch (error) {
       this.alertDialogService.catchError(error);
     }
@@ -117,8 +123,15 @@ export class ConversationChatComponent implements OnInit, OnDestroy {
       const { message } = this.form.value;
       await this.conversationService.createMessage(this.conversation._id, message).toPromise();
       this.form.reset();
+      this._emitToUsers();
     } catch (error) {
       this.alertDialogService.catchError(error);
+    }
+  }
+
+  private _emitToUsers(): void {
+    if (this.conversation) {
+      this.socketioService.emit('new-message', this.conversation);
     }
   }
 
